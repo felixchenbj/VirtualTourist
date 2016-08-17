@@ -7,17 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC2068671D6509EA006154C7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC2068661D6509EA006154C7 /* MapKit.framework */; };
+		DC2068691D650AC9006154C7 /* TravelLocationsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2068681D650AC9006154C7 /* TravelLocationsMapViewController.swift */; };
+		DC20686B1D650BD7006154C7 /* PhotoAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC20686A1D650BD7006154C7 /* PhotoAlbumViewController.swift */; };
+		DC20686E1D650E1B006154C7 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC20686C1D650E1B006154C7 /* Model.xcdatamodeld */; };
 		DCE4D2181D64FBB600422673 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4D2171D64FBB600422673 /* AppDelegate.swift */; };
-		DCE4D21A1D64FBB600422673 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4D2191D64FBB600422673 /* ViewController.swift */; };
 		DCE4D21D1D64FBB600422673 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCE4D21B1D64FBB600422673 /* Main.storyboard */; };
 		DCE4D21F1D64FBB600422673 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCE4D21E1D64FBB600422673 /* Assets.xcassets */; };
 		DCE4D2221D64FBB600422673 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCE4D2201D64FBB600422673 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DC2068661D6509EA006154C7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		DC2068681D650AC9006154C7 /* TravelLocationsMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelLocationsMapViewController.swift; sourceTree = "<group>"; };
+		DC20686A1D650BD7006154C7 /* PhotoAlbumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbumViewController.swift; sourceTree = "<group>"; };
+		DC20686D1D650E1B006154C7 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		DCE4D2141D64FBB600422673 /* VirtualTourist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualTourist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCE4D2171D64FBB600422673 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DCE4D2191D64FBB600422673 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DCE4D21C1D64FBB600422673 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DCE4D21E1D64FBB600422673 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DCE4D2211D64FBB600422673 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -29,15 +35,60 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC2068671D6509EA006154C7 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DC2068611D64FC64006154C7 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				DCE4D21B1D64FBB600422673 /* Main.storyboard */,
+				DCE4D21E1D64FBB600422673 /* Assets.xcassets */,
+				DCE4D2201D64FBB600422673 /* LaunchScreen.storyboard */,
+				DCE4D2231D64FBB600422673 /* Info.plist */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		DC2068621D64FC75006154C7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DC20686A1D650BD7006154C7 /* PhotoAlbumViewController.swift */,
+				DC2068681D650AC9006154C7 /* TravelLocationsMapViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		DC2068631D64FC7E006154C7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DC20686C1D650E1B006154C7 /* Model.xcdatamodeld */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		DC2068641D64FC85006154C7 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				DCE4D2171D64FBB600422673 /* AppDelegate.swift */,
+			);
+			name = Others;
+			sourceTree = "<group>";
+		};
+		DC2068651D64FC8A006154C7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		DCE4D20B1D64FBB600422673 = {
 			isa = PBXGroup;
 			children = (
+				DC2068661D6509EA006154C7 /* MapKit.framework */,
 				DCE4D2161D64FBB600422673 /* VirtualTourist */,
 				DCE4D2151D64FBB600422673 /* Products */,
 			);
@@ -54,12 +105,11 @@
 		DCE4D2161D64FBB600422673 /* VirtualTourist */ = {
 			isa = PBXGroup;
 			children = (
-				DCE4D2171D64FBB600422673 /* AppDelegate.swift */,
-				DCE4D2191D64FBB600422673 /* ViewController.swift */,
-				DCE4D21B1D64FBB600422673 /* Main.storyboard */,
-				DCE4D21E1D64FBB600422673 /* Assets.xcassets */,
-				DCE4D2201D64FBB600422673 /* LaunchScreen.storyboard */,
-				DCE4D2231D64FBB600422673 /* Info.plist */,
+				DC2068631D64FC7E006154C7 /* Model */,
+				DC2068651D64FC8A006154C7 /* View */,
+				DC2068621D64FC75006154C7 /* Controller */,
+				DC2068641D64FC85006154C7 /* Others */,
+				DC2068611D64FC64006154C7 /* Assets */,
 			);
 			path = VirtualTourist;
 			sourceTree = "<group>";
@@ -135,8 +185,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCE4D21A1D64FBB600422673 /* ViewController.swift in Sources */,
 				DCE4D2181D64FBB600422673 /* AppDelegate.swift in Sources */,
+				DC2068691D650AC9006154C7 /* TravelLocationsMapViewController.swift in Sources */,
+				DC20686B1D650BD7006154C7 /* PhotoAlbumViewController.swift in Sources */,
+				DC20686E1D650E1B006154C7 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,8 +340,22 @@
 				DCE4D2281D64FBB600422673 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		DC20686C1D650E1B006154C7 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DC20686D1D650E1B006154C7 /* Model.xcdatamodel */,
+			);
+			currentVersion = DC20686D1D650E1B006154C7 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = DCE4D20C1D64FBB600422673 /* Project object */;
 }
