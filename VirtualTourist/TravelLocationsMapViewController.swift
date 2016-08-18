@@ -11,6 +11,7 @@ import MapKit
 
 class TravelLocationsMapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var noteView: UIView!
     
     
     var editButton: UIBarButtonItem!
@@ -22,6 +23,11 @@ class TravelLocationsMapViewController: UIViewController, MKMapViewDelegate {
 
     
     func rightBarButtonPressed() {
+        Logger.log.info("rightBarButtonPressed")
+        
+        isInEditMode = !isInEditMode
+        
+        updateUI()
     }
     
     override func viewDidLoad() {
@@ -30,6 +36,7 @@ class TravelLocationsMapViewController: UIViewController, MKMapViewDelegate {
         editButton = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: #selector(TravelLocationsMapViewController.rightBarButtonPressed))
         
         doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(TravelLocationsMapViewController.rightBarButtonPressed))
+        
         
         updateUI()
 
@@ -43,6 +50,7 @@ class TravelLocationsMapViewController: UIViewController, MKMapViewDelegate {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+
         // Dispose of any resources that can be recreated.
     }
     
@@ -59,20 +67,15 @@ class TravelLocationsMapViewController: UIViewController, MKMapViewDelegate {
     
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         
-        performSegueWithIdentifier("gotoPhotoAlbum", sender: self)
-        
-        /*
-        if let pin = view.annotation {
-            mapView.removeAnnotation(pin)
+        if isInEditMode {
+            performSegueWithIdentifier("gotoPhotoAlbum", sender: self)
+        } else {
+            if let pin = view.annotation {
+                mapView.removeAnnotation(pin)
+            }
         }
-        */
     }
     
-    
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
@@ -87,8 +90,20 @@ class TravelLocationsMapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func updateUI() {
-        
+        if isInEditMode {
+            navigationItem.rightBarButtonItem = doneButton
+            
+            UIView.animateWithDuration(0.4, delay: 0, options: [], animations: {
+                self.noteView.hidden = false
+                }, completion: { _ in } )
+            
+        } else {
+            print("done")
+            navigationItem.rightBarButtonItem = editButton
+            
+            UIView.animateWithDuration(0.4, delay: 0, options: [], animations: {
+                self.noteView.hidden = true
+                }, completion: { _ in } )
+        }
     }
- 
-
 }

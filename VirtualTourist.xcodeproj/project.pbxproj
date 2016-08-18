@@ -13,8 +13,13 @@
 		DC20686E1D650E1B006154C7 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC20686C1D650E1B006154C7 /* Model.xcdatamodeld */; };
 		DC2068711D6512DD006154C7 /* Pin+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC20686F1D6512DD006154C7 /* Pin+CoreDataProperties.swift */; };
 		DC2068721D6512DD006154C7 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2068701D6512DD006154C7 /* Pin.swift */; };
-		DC2068761D65A34B006154C7 /* XCGLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2068751D65A34B006154C7 /* XCGLogger.swift */; };
-		DC2068781D65A3E0006154C7 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2068771D65A3E0006154C7 /* Logger.swift */; };
+		DC20687B1D65B4D0006154C7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC20687A1D65B4D0006154C7 /* Constants.swift */; };
+		DC20687D1D65B565006154C7 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC20687C1D65B565006154C7 /* SwiftyJSON.swift */; };
+		DC2068801D65B5D9006154C7 /* FunctionsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC20687E1D65B5D9006154C7 /* FunctionsHelper.swift */; };
+		DC2068811D65B5D9006154C7 /* HTTPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC20687F1D65B5D9006154C7 /* HTTPHelper.swift */; };
+		DC2068841D65B76D006154C7 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2068821D65B76D006154C7 /* Logger.swift */; };
+		DC2068851D65B76D006154C7 /* XCGLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2068831D65B76D006154C7 /* XCGLogger.swift */; };
+		DC2068881D65B7A5006154C7 /* FlickerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2068871D65B7A5006154C7 /* FlickerClient.swift */; };
 		DCE4D2181D64FBB600422673 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4D2171D64FBB600422673 /* AppDelegate.swift */; };
 		DCE4D21D1D64FBB600422673 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCE4D21B1D64FBB600422673 /* Main.storyboard */; };
 		DCE4D21F1D64FBB600422673 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCE4D21E1D64FBB600422673 /* Assets.xcassets */; };
@@ -28,8 +33,13 @@
 		DC20686D1D650E1B006154C7 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		DC20686F1D6512DD006154C7 /* Pin+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Pin+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DC2068701D6512DD006154C7 /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
-		DC2068751D65A34B006154C7 /* XCGLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCGLogger.swift; sourceTree = "<group>"; };
-		DC2068771D65A3E0006154C7 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		DC20687A1D65B4D0006154C7 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		DC20687C1D65B565006154C7 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		DC20687E1D65B5D9006154C7 /* FunctionsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionsHelper.swift; sourceTree = "<group>"; };
+		DC20687F1D65B5D9006154C7 /* HTTPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPHelper.swift; sourceTree = "<group>"; };
+		DC2068821D65B76D006154C7 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		DC2068831D65B76D006154C7 /* XCGLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCGLogger.swift; sourceTree = "<group>"; };
+		DC2068871D65B7A5006154C7 /* FlickerClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickerClient.swift; sourceTree = "<group>"; };
 		DCE4D2141D64FBB600422673 /* VirtualTourist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualTourist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCE4D2171D64FBB600422673 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCE4D21C1D64FBB600422673 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -76,6 +86,8 @@
 				DC20686F1D6512DD006154C7 /* Pin+CoreDataProperties.swift */,
 				DC2068701D6512DD006154C7 /* Pin.swift */,
 				DC20686C1D650E1B006154C7 /* Model.xcdatamodeld */,
+				DC20687A1D65B4D0006154C7 /* Constants.swift */,
+				DC2068871D65B7A5006154C7 /* FlickerClient.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -83,8 +95,11 @@
 		DC2068641D64FC85006154C7 /* Others */ = {
 			isa = PBXGroup;
 			children = (
-				DC2068791D65A903006154C7 /* Log */,
+				DC2068861D65B772006154C7 /* Log */,
 				DCE4D2171D64FBB600422673 /* AppDelegate.swift */,
+				DC20687C1D65B565006154C7 /* SwiftyJSON.swift */,
+				DC20687E1D65B5D9006154C7 /* FunctionsHelper.swift */,
+				DC20687F1D65B5D9006154C7 /* HTTPHelper.swift */,
 			);
 			name = Others;
 			sourceTree = "<group>";
@@ -96,11 +111,11 @@
 			name = View;
 			sourceTree = "<group>";
 		};
-		DC2068791D65A903006154C7 /* Log */ = {
+		DC2068861D65B772006154C7 /* Log */ = {
 			isa = PBXGroup;
 			children = (
-				DC2068751D65A34B006154C7 /* XCGLogger.swift */,
-				DC2068771D65A3E0006154C7 /* Logger.swift */,
+				DC2068821D65B76D006154C7 /* Logger.swift */,
+				DC2068831D65B76D006154C7 /* XCGLogger.swift */,
 			);
 			name = Log;
 			sourceTree = "<group>";
@@ -206,13 +221,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCE4D2181D64FBB600422673 /* AppDelegate.swift in Sources */,
-				DC2068761D65A34B006154C7 /* XCGLogger.swift in Sources */,
+				DC2068841D65B76D006154C7 /* Logger.swift in Sources */,
 				DC2068691D650AC9006154C7 /* TravelLocationsMapViewController.swift in Sources */,
+				DC2068811D65B5D9006154C7 /* HTTPHelper.swift in Sources */,
+				DC20687D1D65B565006154C7 /* SwiftyJSON.swift in Sources */,
+				DC2068801D65B5D9006154C7 /* FunctionsHelper.swift in Sources */,
 				DC20686B1D650BD7006154C7 /* PhotoAlbumViewController.swift in Sources */,
 				DC2068721D6512DD006154C7 /* Pin.swift in Sources */,
+				DC2068851D65B76D006154C7 /* XCGLogger.swift in Sources */,
 				DC2068711D6512DD006154C7 /* Pin+CoreDataProperties.swift in Sources */,
 				DC20686E1D650E1B006154C7 /* Model.xcdatamodeld in Sources */,
-				DC2068781D65A3E0006154C7 /* Logger.swift in Sources */,
+				DC2068881D65B7A5006154C7 /* FlickerClient.swift in Sources */,
+				DC20687B1D65B4D0006154C7 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

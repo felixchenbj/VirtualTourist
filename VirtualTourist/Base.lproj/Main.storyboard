@@ -9,7 +9,6 @@
         <!--Travel Locations Map View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" customClass="TravelLocationsMapViewController" customModule="VirtualTourist" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
@@ -19,16 +18,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="OW8-C1-cmM">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="LV3-Pd-CiC">
                                 <rect key="frame" x="-4" y="64" width="383" height="603"/>
-                            </mapView>
+                                <subviews>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="OW8-C1-cmM">
+                                        <rect key="frame" x="0.0" y="0.0" width="383" height="549"/>
+                                    </mapView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ei-1x-e3f">
+                                        <rect key="frame" x="0.0" y="549" width="383" height="54"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap Pins to Delete" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exj-N2-QfL">
+                                                <rect key="frame" x="122" y="16" width="139" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="exj-N2-QfL" firstAttribute="centerX" secondItem="2ei-1x-e3f" secondAttribute="centerX" id="0pr-Xj-JPJ"/>
+                                            <constraint firstItem="exj-N2-QfL" firstAttribute="centerY" secondItem="2ei-1x-e3f" secondAttribute="centerY" id="Cid-Fj-8J5"/>
+                                            <constraint firstAttribute="height" constant="54" id="Sie-Q6-N1x"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="OW8-C1-cmM" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="V0M-he-nID"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="OW8-C1-cmM" secondAttribute="trailing" constant="-20" id="otb-09-j8X"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="OW8-C1-cmM" secondAttribute="bottom" id="qLd-U2-p0N"/>
-                            <constraint firstItem="OW8-C1-cmM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="xld-tr-y1y"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="LV3-Pd-CiC" secondAttribute="bottom" id="C13-4d-mAA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="LV3-Pd-CiC" secondAttribute="trailing" constant="-20" id="JCq-Fg-Y6w"/>
+                            <constraint firstItem="LV3-Pd-CiC" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="bRk-vb-9AK"/>
+                            <constraint firstItem="LV3-Pd-CiC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="hO4-Uf-oRJ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="6Hk-wN-JeJ">
@@ -37,9 +58,11 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="mapView" destination="OW8-C1-cmM" id="byG-EU-8xp"/>
+                        <outlet property="noteView" destination="2ei-1x-e3f" id="Jzo-0W-7lF"/>
                         <segue destination="Fel-44-mFn" kind="show" identifier="gotoPhotoAlbum" id="JsG-C2-MP1"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="225.5" y="183.5"/>
         </scene>

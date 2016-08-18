@@ -11,7 +11,7 @@ import Foundation
 struct Logger {
     static let log: XCGLogger = {
         let log = XCGLogger.defaultInstance()
-        log.setup(.Debug, showThreadName: true, showLogLevel: true, showFileNames: true, showLineNumbers: false, writeToFile: nil, fileLogLevel: .Info)
+        log.setup(.Debug, showThreadName: true, showLogLevel: true, showFileNames: true, showLineNumbers: false, writeToFile: nil)
         log.xcodeColorsEnabled = true
         log.xcodeColors = [
             .Verbose: .lightGrey,
