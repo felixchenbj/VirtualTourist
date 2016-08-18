@@ -94,7 +94,6 @@
                             </mapView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6tP-gD-YZq">
                                 <rect key="frame" x="-4" y="214" width="383" height="453"/>
-                                <color key="backgroundColor" red="0.29751728129999999" green="0.51327543740000003" blue="0.7458066418" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wv4-sh-hgN">
                                     <size key="itemSize" width="80" height="80"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -108,8 +107,26 @@
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="caw-8Y-xTs">
+                                                    <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                                    <color key="backgroundColor" red="0.26274509800000001" green="0.45098039220000002" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                                </imageView>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="D48-xb-0Ha">
+                                                    <rect key="frame" x="22" y="21" width="37" height="37"/>
+                                                    <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </activityIndicatorView>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailingMargin" secondItem="caw-8Y-xTs" secondAttribute="trailing" constant="-8" id="IW8-Vl-yuN"/>
+                                            <constraint firstItem="D48-xb-0Ha" firstAttribute="centerX" secondItem="5nQ-mR-2W6" secondAttribute="centerX" id="LJn-pu-s4m"/>
+                                            <constraint firstItem="D48-xb-0Ha" firstAttribute="centerY" secondItem="5nQ-mR-2W6" secondAttribute="centerY" id="Shc-IM-McL"/>
+                                            <constraint firstItem="caw-8Y-xTs" firstAttribute="leading" secondItem="5nQ-mR-2W6" secondAttribute="leadingMargin" constant="-8" id="UHL-SP-OBo"/>
+                                            <constraint firstItem="caw-8Y-xTs" firstAttribute="top" secondItem="5nQ-mR-2W6" secondAttribute="topMargin" constant="-8" id="Vlr-KS-tjf"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="caw-8Y-xTs" secondAttribute="bottom" constant="-8" id="kmr-ay-tvb"/>
+                                        </constraints>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>

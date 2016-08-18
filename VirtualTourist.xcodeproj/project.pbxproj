@@ -22,6 +22,7 @@
 		DC2068931D661B50006154C7 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC20688F1D661B50006154C7 /* Pin.swift */; };
 		DC2068941D661B50006154C7 /* Photo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2068901D661B50006154C7 /* Photo+CoreDataProperties.swift */; };
 		DC2068951D661B50006154C7 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2068911D661B50006154C7 /* Photo.swift */; };
+		DC2068971D66704F006154C7 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2068961D66704F006154C7 /* CoreDataStack.swift */; };
 		DCE4D2181D64FBB600422673 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4D2171D64FBB600422673 /* AppDelegate.swift */; };
 		DCE4D21D1D64FBB600422673 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCE4D21B1D64FBB600422673 /* Main.storyboard */; };
 		DCE4D21F1D64FBB600422673 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCE4D21E1D64FBB600422673 /* Assets.xcassets */; };
@@ -44,6 +45,7 @@
 		DC20688F1D661B50006154C7 /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		DC2068901D661B50006154C7 /* Photo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Photo+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DC2068911D661B50006154C7 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		DC2068961D66704F006154C7 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		DCE4D2141D64FBB600422673 /* VirtualTourist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualTourist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCE4D2171D64FBB600422673 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCE4D21C1D64FBB600422673 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				DC20688D1D661259006154C7 /* Data */,
+				DC2068961D66704F006154C7 /* CoreDataStack.swift */,
 				DC20687A1D65B4D0006154C7 /* Constants.swift */,
 				DC2068871D65B7A5006154C7 /* FlickerClient.swift */,
 			);
@@ -241,6 +244,7 @@
 				DC2068691D650AC9006154C7 /* TravelLocationsMapViewController.swift in Sources */,
 				DC2068811D65B5D9006154C7 /* HTTPHelper.swift in Sources */,
 				DC20687D1D65B565006154C7 /* SwiftyJSON.swift in Sources */,
+				DC2068971D66704F006154C7 /* CoreDataStack.swift in Sources */,
 				DC2068931D661B50006154C7 /* Pin.swift in Sources */,
 				DC2068801D65B5D9006154C7 /* FunctionsHelper.swift in Sources */,
 				DC2068951D661B50006154C7 /* Photo.swift in Sources */,

@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import CoreData
 
 class PhotoAlbumViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
@@ -15,7 +16,10 @@ class PhotoAlbumViewController: UIViewController, UICollectionViewDataSource, UI
     
     @IBOutlet weak var collectionViewFlowLayout: UICollectionViewFlowLayout!
     
-    var pinIndex:Int = 0
+    var stack: CoreDataStack!
+    var fetchedResultsController: NSFetchedResultsController!
+    
+    var pin: Pin!
 
     override func viewDidLoad() {
         super.viewDidLoad()
