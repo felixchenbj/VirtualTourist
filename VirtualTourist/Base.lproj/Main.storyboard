@@ -18,38 +18,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="LV3-Pd-CiC">
-                                <rect key="frame" x="-4" y="64" width="383" height="603"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="OW8-C1-cmM">
+                                <rect key="frame" x="-4" y="0.0" width="383" height="667"/>
+                            </mapView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ei-1x-e3f">
+                                <rect key="frame" x="-4" y="667" width="383" height="54"/>
                                 <subviews>
-                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="OW8-C1-cmM">
-                                        <rect key="frame" x="0.0" y="0.0" width="383" height="549"/>
-                                    </mapView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ei-1x-e3f">
-                                        <rect key="frame" x="0.0" y="549" width="383" height="54"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap Pins to Delete" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exj-N2-QfL">
-                                                <rect key="frame" x="122" y="16" width="139" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap Pins to Delete" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exj-N2-QfL">
+                                        <rect key="frame" x="122" y="16" width="139" height="21"/>
                                         <constraints>
-                                            <constraint firstItem="exj-N2-QfL" firstAttribute="centerX" secondItem="2ei-1x-e3f" secondAttribute="centerX" id="0pr-Xj-JPJ"/>
-                                            <constraint firstItem="exj-N2-QfL" firstAttribute="centerY" secondItem="2ei-1x-e3f" secondAttribute="centerY" id="Cid-Fj-8J5"/>
-                                            <constraint firstAttribute="height" constant="54" id="Sie-Q6-N1x"/>
+                                            <constraint firstAttribute="height" constant="21" id="37u-3n-V0q"/>
                                         </constraints>
-                                    </view>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
-                            </stackView>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="2z6-Ds-tLL"/>
+                                    <constraint firstItem="exj-N2-QfL" firstAttribute="centerX" secondItem="2ei-1x-e3f" secondAttribute="centerX" id="6it-r3-EDZ"/>
+                                    <constraint firstItem="exj-N2-QfL" firstAttribute="centerY" secondItem="2ei-1x-e3f" secondAttribute="centerY" id="Ine-oS-kWC"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="LV3-Pd-CiC" secondAttribute="bottom" id="C13-4d-mAA"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="LV3-Pd-CiC" secondAttribute="trailing" constant="-20" id="JCq-Fg-Y6w"/>
-                            <constraint firstItem="LV3-Pd-CiC" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="bRk-vb-9AK"/>
-                            <constraint firstItem="LV3-Pd-CiC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="hO4-Uf-oRJ"/>
+                            <constraint firstItem="OW8-C1-cmM" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="621-IY-MYa"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="OW8-C1-cmM" secondAttribute="bottom" id="GvF-2k-Z3m"/>
+                            <constraint firstItem="2ei-1x-e3f" firstAttribute="top" secondItem="OW8-C1-cmM" secondAttribute="bottom" id="Xvf-Du-vy0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="OW8-C1-cmM" secondAttribute="trailing" constant="-20" id="huU-GY-0m2"/>
+                            <constraint firstItem="2ei-1x-e3f" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="pew-Sa-Cc8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2ei-1x-e3f" secondAttribute="trailing" constant="-20" id="rfG-Kk-ytl"/>
+                            <constraint firstItem="OW8-C1-cmM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="uRb-RY-Dtk"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="6Hk-wN-JeJ">
@@ -101,7 +102,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="5nQ-mR-2W6">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="collectionCell" reuseIdentifier="PhotoCell" id="5nQ-mR-2W6">
                                         <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -145,6 +146,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="collectionView" destination="6tP-gD-YZq" id="ii8-FT-l2Z"/>
+                        <outlet property="collectionViewFlowLayout" destination="wv4-sh-hgN" id="Qgo-m1-CTW"/>
                         <outlet property="mapView" destination="79C-DQ-h4W" id="AJQ-Cg-lQ0"/>
                     </connections>
                 </viewController>

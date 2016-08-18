@@ -9,32 +9,41 @@
 import UIKit
 import MapKit
 
-class PhotoAlbumViewController: UIViewController {
+class PhotoAlbumViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    @IBOutlet weak var collectionViewFlowLayout: UICollectionViewFlowLayout!
     
     var pinIndex:Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        let space: CGFloat = 3.0
+        
+        collectionViewFlowLayout.minimumInteritemSpacing = space
+        collectionViewFlowLayout.minimumLineSpacing = space
+        collectionViewFlowLayout.itemSize = CGSizeMake(80, 80)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 0
     }
-    */
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("memeCollectionCell", forIndexPath: indexPath) 
+        
+        /*
+        if let meme = memeModel.getItemAt(indexPath.row) {
+            cell.topLabel?.text = meme.topText
+            cell.bottomLabel?.text = meme.bottomText
+            cell.imageView?.image = meme.memedImage
+        }*/
+        
+        return cell
+    }
 
 }

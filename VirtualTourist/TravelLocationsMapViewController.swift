@@ -28,8 +28,14 @@ class TravelLocationsMapViewController: UIViewController, MKMapViewDelegate {
         isInEditMode = !isInEditMode
         
         updateUI()
+        
+        
+        FlickerClient.sharedFlickerClient().searchPhotos(54.005108, longitude: -1.748286) { (info, results, success) in
+            
+            
+        }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,12 +52,6 @@ class TravelLocationsMapViewController: UIViewController, MKMapViewDelegate {
         
         mapView.delegate = self
         
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-
-        // Dispose of any resources that can be recreated.
     }
     
     func dropPin(gestureRecognizer: UIGestureRecognizer) {
@@ -93,17 +93,23 @@ class TravelLocationsMapViewController: UIViewController, MKMapViewDelegate {
         if isInEditMode {
             navigationItem.rightBarButtonItem = doneButton
             
-            UIView.animateWithDuration(0.4, delay: 0, options: [], animations: {
-                self.noteView.hidden = false
-                }, completion: { _ in } )
-            
+            self.view.height -= noteView.height
+
         } else {
             print("done")
             navigationItem.rightBarButtonItem = editButton
-            
-            UIView.animateWithDuration(0.4, delay: 0, options: [], animations: {
-                self.noteView.hidden = true
-                }, completion: { _ in } )
+            self.view.height += noteView.height
+        }
+    }
+}
+
+extension UIView {
+    var height:CGFloat {
+        get {
+            return self.frame.size.height
+        }
+        set {
+            self.frame.size.height = newValue
         }
     }
 }
