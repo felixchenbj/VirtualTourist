@@ -13,6 +13,7 @@ class PhotoAlbumViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var pinIndex:Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()

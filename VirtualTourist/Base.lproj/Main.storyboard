@@ -33,15 +33,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="6Hk-wN-JeJ">
                         <barButtonItem key="backBarButtonItem" title="OK" id="Jci-dq-jtv"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="spc-5p-IaJ">
-                            <connections>
-                                <action selector="editButtonPressed:" destination="BYZ-38-t0r" id="F9n-qr-9ef"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="editButton" destination="spc-5p-IaJ" id="lIw-8C-RsK"/>
                         <outlet property="mapView" destination="OW8-C1-cmM" id="byG-EU-8xp"/>
                         <segue destination="Fel-44-mFn" kind="show" identifier="gotoPhotoAlbum" id="JsG-C2-MP1"/>
                     </connections>

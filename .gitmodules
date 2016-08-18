@@ -1,0 +1,3 @@
+[submodule "VirtualTourist/XCGLogger"]
+	path = VirtualTourist/XCGLogger
+	url = https://github.com/DaveWoodCom/XCGLogger.git
