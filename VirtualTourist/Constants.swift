@@ -26,7 +26,7 @@ struct Constants {
         static let ApiPath = "/services/rest"
         
         static let PhotoSearch = "flickr.photos.search"
-        static let ApiKey = "58090a559f643b9b5d8f400a81630d91"
+        static let ApiKey = ""
         
         static let Extras = "url_m"
         static let Format = "json"
