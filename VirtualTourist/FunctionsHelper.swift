@@ -27,12 +27,11 @@ struct FunctionsHelper {
         viewController.presentViewController(controller, animated: true, completion:nil)
     }
     
-    /*
-    static func centerMapOnStudentLocation(studentLocation: StudentLocation, mapView: MKMapView) {
-        let location = CLLocation(latitude: studentLocation.latitude, longitude: studentLocation.longitude)
+    
+    static func centerMapOnStudentLocation(pin: Pin, mapView: MKMapView, regionRadius: CLLocationDistance = 10000) {
+        let location = CLLocation(latitude: pin.latitude as! Double, longitude: pin.longitude as! Double)
         let regionRadius: CLLocationDistance = 10000
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 2.0, regionRadius * 2.0)
         mapView.setRegion(coordinateRegion, animated: true)
     }
- */
 }

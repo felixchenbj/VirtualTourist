@@ -14,11 +14,12 @@ class TravelLocationsMapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var noteView: UIView!
     
-    var stack: CoreDataStack!
-    var fetchedResultsController: NSFetchedResultsController!
+    var fetchedResultsController: NSFetchedResultsController?
     
     var editButton: UIBarButtonItem!
     var doneButton: UIBarButtonItem!
+    
+    var stack: CoreDataStack!
     
     var selectedPinIndex:Int = 0
     
@@ -32,12 +33,6 @@ class TravelLocationsMapViewController: UIViewController, MKMapViewDelegate {
         
         updateUI()
         
-        /*
-        FlickerClient.sharedFlickerClient().searchPhotos(54.005108, longitude: -1.748286) { (info, results, success) in
-            
-            
-        }
- */
     }
 
     override func viewDidLoad() {
@@ -61,6 +56,9 @@ class TravelLocationsMapViewController: UIViewController, MKMapViewDelegate {
         stack = delegate.stack
         
         setUpFetchedResultsController()
+        
+        executeSearch()
+        loadPinFromModel()
     }
     
     private func setUpFetchedResultsController() {
@@ -80,22 +78,57 @@ class TravelLocationsMapViewController: UIViewController, MKMapViewDelegate {
         let touchMapCoordinate: CLLocationCoordinate2D = mapView.convertPoint(tapPoint, toCoordinateFromView: mapView)
         
         if UIGestureRecognizerState.Began == gestureRecognizer.state {
-            if let stack = stack {
-                let pin = Pin(annotationLatitude: touchMapCoordinate.latitude, annotationLongitude: touchMapCoordinate.longitude, context: stack.context)
+            if let fetchedResultsController = fetchedResultsController {
+                let pin = Pin(annotationLatitude: touchMapCoordinate.latitude, annotationLongitude: touchMapCoordinate.longitude, context: fetchedResultsController.managedObjectContext)
                 mapView.addAnnotation(pin)
             }
         }
     }
     
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
-        
+        mapView.deselectAnnotation(view.annotation, animated: false)
         if isInEditMode {
-            if let pin = view.annotation {
-                Logger.log.debug("Delete a pin.")
-                mapView.removeAnnotation(pin)
+            if let pin = view.annotation as? Pin {
+                if let fetchedResultsController = fetchedResultsController {
+                    Logger.log.debug("Delete a pin.")
+                    mapView.removeAnnotation(pin)
+                    fetchedResultsController.managedObjectContext.deleteObject(pin)
+                }
             }
         } else {
             performSegueWithIdentifier("gotoPhotoAlbum", sender: view.annotation)
+        }
+    }
+    
+    func loadPinFromModel() {
+        if let fc = fetchedResultsController {
+            if let fetchedObjects = fc.fetchedObjects {
+                clearAllAnnotations()
+                
+                for object in fetchedObjects {
+                    if let pin = object as? Pin {
+                        mapView.addAnnotation(pin)
+                    }
+                }
+                
+                if mapView.annotations.count > 0 {
+                    FunctionsHelper.centerMapOnStudentLocation((mapView.annotations[0] as? Pin)!, mapView: mapView, regionRadius: 20000)
+                }
+            }
+        }
+    }
+    
+    func clearAllAnnotations() {
+        mapView.removeAnnotations(mapView.annotations)
+    }
+    
+    func executeSearch(){
+        if let fetchedResultsController = fetchedResultsController {
+            do{
+                try fetchedResultsController.performFetch()
+            }catch let e as NSError{
+                Logger.log.error("Error while trying to perform a search: \n\(e)\n\(fetchedResultsController)")
+            }
         }
     }
     
@@ -113,6 +146,7 @@ class TravelLocationsMapViewController: UIViewController, MKMapViewDelegate {
                     let pred = NSPredicate(format: "pin = %@", argumentArray: [pin])
                     
                     fr.predicate = pred
+                    fr.sortDescriptors = [NSSortDescriptor(key: "photoURL", ascending: true)]
                     
                     // Create FetchedResultsController
                     let fc = NSFetchedResultsController(fetchRequest: fr,
@@ -122,6 +156,8 @@ class TravelLocationsMapViewController: UIViewController, MKMapViewDelegate {
 
                     viewController.fetchedResultsController = fc
                     viewController.pin = pin
+                    
+                    stack.save()
                 }
             }
         }
@@ -132,23 +168,12 @@ class TravelLocationsMapViewController: UIViewController, MKMapViewDelegate {
             print("edit")
             navigationItem.rightBarButtonItem = doneButton
             
-            self.view.height -= noteView.height
+            self.view.frame.origin.y -= noteView.frame.size.height
 
         } else {
             print("done")
             navigationItem.rightBarButtonItem = editButton
-            self.view.height += noteView.height
-        }
-    }
-}
-
-extension UIView {
-    var height:CGFloat {
-        get {
-            return self.frame.size.height
-        }
-        set {
-            self.frame.size.height = newValue
+            self.view.frame.origin.y += noteView.frame.size.height
         }
     }
 }

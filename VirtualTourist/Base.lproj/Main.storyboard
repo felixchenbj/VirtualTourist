@@ -94,6 +94,7 @@
                             </mapView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6tP-gD-YZq">
                                 <rect key="frame" x="-4" y="214" width="383" height="453"/>
+                                <color key="backgroundColor" red="0.29803921570000003" green="0.51372549020000002" blue="0.74509803919999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wv4-sh-hgN">
                                     <size key="itemSize" width="80" height="80"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -101,18 +102,18 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="collectionCell" reuseIdentifier="PhotoCell" id="5nQ-mR-2W6">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="5nQ-mR-2W6" customClass="ImageCollectionViewCell" customModule="VirtualTourist" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="caw-8Y-xTs">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="caw-8Y-xTs">
                                                     <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                     <color key="backgroundColor" red="0.26274509800000001" green="0.45098039220000002" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
                                                 </imageView>
-                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="D48-xb-0Ha">
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="D48-xb-0Ha">
                                                     <rect key="frame" x="22" y="21" width="37" height="37"/>
                                                     <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </activityIndicatorView>
@@ -127,8 +128,16 @@
                                             <constraint firstItem="caw-8Y-xTs" firstAttribute="top" secondItem="5nQ-mR-2W6" secondAttribute="topMargin" constant="-8" id="Vlr-KS-tjf"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="caw-8Y-xTs" secondAttribute="bottom" constant="-8" id="kmr-ay-tvb"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="activityIndicator" destination="D48-xb-0Ha" id="dt4-x6-bcX"/>
+                                            <outlet property="imageView" destination="caw-8Y-xTs" id="o9S-aD-5Fd"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="Fel-44-mFn" id="hoH-x4-0Mj"/>
+                                    <outlet property="delegate" destination="Fel-44-mFn" id="pro-LT-Won"/>
+                                </connections>
                             </collectionView>
                             <view opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2sL-JF-rij">
                                 <rect key="frame" x="-4" y="627" width="383" height="40"/>
@@ -136,6 +145,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r7x-RB-BO2">
                                         <rect key="frame" x="139" y="5" width="104" height="30"/>
                                         <state key="normal" title="New Collection"/>
+                                        <connections>
+                                            <action selector="fetchNewCollection:" destination="Fel-44-mFn" eventType="touchUpInside" id="ZAr-OQ-6wd"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

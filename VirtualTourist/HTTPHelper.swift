@@ -47,7 +47,7 @@ struct HTTPHelper {
                 components.queryItems!.append(queryItem)
             }
         }
-        Logger.log.info("\(components.URL!)")
+        //Logger.log.info("\(components.URL!)")
         return components.URL!
     }
 
