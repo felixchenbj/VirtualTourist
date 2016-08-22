@@ -10,22 +10,40 @@ import UIKit
 import MapKit
 import CoreData
 
-class PhotoAlbumViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class PhotoAlbumViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var collectionViewFlowLayout: UICollectionViewFlowLayout!
     
     var fetchedResultsController: NSFetchedResultsController!
+    var blockOperations = [NSBlockOperation]()
     
     var pin: Pin?
-    
     var stack: CoreDataStack!
     
-    @IBAction func fetchNewCollection(sender: UIButton) {
-        fetchRandomPhotos()
-    }
+    var hasItemSelected = false
     
+    
+    @IBOutlet weak var noImageLabel: UILabel!
+    @IBOutlet weak var newCollectionButton: UIButton!
+    @IBAction func fetchNewCollection(sender: UIButton) {
+        
+        if hasItemSelected {
+            if let selectedItems = collectionView.indexPathsForSelectedItems() {
+                for item in selectedItems {
+                    if let obj = fetchedResultsController.objectAtIndexPath(item) as? NSManagedObject {
+                        fetchedResultsController.managedObjectContext.deleteObject(obj)
+                    }
+                }
+                stack.save()
+            }
+        } else {
+            fetchRandomPhotos()
+        }
+        
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,9 +55,11 @@ class PhotoAlbumViewController: UIViewController, UICollectionViewDataSource, UI
         collectionViewFlowLayout.minimumLineSpacing = space
         collectionViewFlowLayout.itemSize = CGSizeMake(100, 100)
         
-        //fetchedResultsController?.delegate = CollectionViewFetchedResultsControllerDelegate(collectionView: collectionView)
+        collectionView.allowsMultipleSelection = true
         
-        //collectionView.delegate = self
+        fetchedResultsController.delegate = self
+        
+        updateNewCollectionButton()
         
         // Get the stack
         let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -60,16 +80,6 @@ class PhotoAlbumViewController: UIViewController, UICollectionViewDataSource, UI
         }
         
         collectionView.reloadData()
-        
-        /*
-        if let fc = self.fetchedResultsController {
-            if let fetchedObjects = fc.fetchedObjects {
-                if fetchedObjects.count <= 0 {
-                    fetchRandomPhotos()
-                }
-            }
-        }
- */
     }
     
     func needToRefetchPhotos() -> Bool{
@@ -107,30 +117,22 @@ class PhotoAlbumViewController: UIViewController, UICollectionViewDataSource, UI
                         return
                     }
                     
-                    //self.executeSearch()
-                    if let fc = self.fetchedResultsController {
-                        if let fetchedObjects = fc.fetchedObjects {
-                            for object in fetchedObjects {
-                                if let obj = object as? NSManagedObject {
-                                    fc.managedObjectContext.deleteObject(obj)
-                                }
+                    if let fetchedObjects = self.fetchedResultsController.fetchedObjects {
+                        for object in fetchedObjects {
+                            if let obj = object as? NSManagedObject {
+                                self.fetchedResultsController.managedObjectContext.deleteObject(obj)
                             }
                         }
                     }
                     
+                    
                     if let results = results {
                         for photoPath in results {
-                            //self.imageList.append(photoPath)
-                            //print(photoPath)
                             let _ = Photo(data: nil, photoURL: photoPath, pin: self.pin, context: self.fetchedResultsController.managedObjectContext)
                         }
                     }
-                    self.executeSearch()
-                    
-                    self.collectionView.reloadData()
-                    
-                    self.stack.save()
                 })
+                self.stack.save()
             })
         }
     }
@@ -150,97 +152,21 @@ class PhotoAlbumViewController: UIViewController, UICollectionViewDataSource, UI
     func clearAllAnnotations() {
         mapView.removeAnnotations(mapView.annotations)
     }
-
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let fc = fetchedResultsController{
-            
-            if let count = fc.sections?[section].numberOfObjects {
-                return count
+    
+    func updateNewCollectionButton() {
+        hasItemSelected = false
+        if let selectedItems = collectionView.indexPathsForSelectedItems() {
+            if selectedItems.count > 0 {
+                hasItemSelected = true
             }
         }
-        return 0
-    }
-
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let photo = fetchedResultsController?.objectAtIndexPath(indexPath) as! Photo
+        if hasItemSelected {
+            newCollectionButton.setTitle("Remove Selected Items", forState: UIControlState.Normal)
+        } else {
+            newCollectionButton.setTitle("New Collection", forState: UIControlState.Normal)
+        }
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PhotoCell", forIndexPath: indexPath) as! ImageCollectionViewCell
-        
-        cell.photo = photo
-        //cell.photoPath = path
-        
-        
-        return cell
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(8, 8, 8, 8)
     }
 }
 
-/*
-extension PhotoAlbumViewController: NSFetchedResultsControllerDelegate {
-    
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        collectionView.performBatchUpdates({
-            self.blockOperations.forEach { $0.start() }
-            }, completion: { finished in
-                self.blockOperations.removeAll(keepCapacity: false)
-        })
-    }
-
-    func controllerWillChangeContent(controller: NSFetchedResultsController) {
-        blockOperations.removeAll(keepCapacity: false)
-    }
-    
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-        
-        switch type {
-            
-        case .Insert:
-            guard let newIndexPath = newIndexPath else { return }
-            let op = NSBlockOperation { [weak self] in self?.collectionView.insertItemsAtIndexPaths([newIndexPath]) }
-            blockOperations.append(op)
-            
-        case .Update:
-            guard let newIndexPath = newIndexPath else { return }
-            let op = NSBlockOperation { [weak self] in self?.collectionView.reloadItemsAtIndexPaths([newIndexPath]) }
-            blockOperations.append(op)
-            
-        case .Move:
-            guard let indexPath = indexPath else { return }
-            guard let newIndexPath = newIndexPath else { return }
-            let op = NSBlockOperation { [weak self] in self?.collectionView.moveItemAtIndexPath(indexPath, toIndexPath: newIndexPath) }
-            blockOperations.append(op)
-            
-        case .Delete:
-            guard let indexPath = indexPath else { return }
-            let op = NSBlockOperation { [weak self] in self?.collectionView.deleteItemsAtIndexPaths([indexPath]) }
-            blockOperations.append(op)
-            
-        }
-    }
-    
-    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
-        
-        switch type {
-            
-        case .Insert:
-            let op = NSBlockOperation { [weak self] in self?.collectionView.insertSections(NSIndexSet(index: sectionIndex)) }
-            blockOperations.append(op)
-            
-        case .Update:
-            let op = NSBlockOperation { [weak self] in self?.collectionView.reloadSections(NSIndexSet(index: sectionIndex)) }
-            blockOperations.append(op)
-            
-        case .Delete:
-            let op = NSBlockOperation { [weak self] in self?.collectionView.deleteSections(NSIndexSet(index: sectionIndex)) }
-            blockOperations.append(op)
-            
-        default: break
-            
-        }
-    }
-}
- */

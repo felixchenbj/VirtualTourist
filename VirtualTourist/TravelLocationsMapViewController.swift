@@ -42,7 +42,6 @@ class TravelLocationsMapViewController: UIViewController, MKMapViewDelegate {
         
         doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(TravelLocationsMapViewController.rightBarButtonPressed))
         
-        
         updateUI()
 
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(TravelLocationsMapViewController.dropPin(_:)))
@@ -81,6 +80,8 @@ class TravelLocationsMapViewController: UIViewController, MKMapViewDelegate {
             if let fetchedResultsController = fetchedResultsController {
                 let pin = Pin(annotationLatitude: touchMapCoordinate.latitude, annotationLongitude: touchMapCoordinate.longitude, context: fetchedResultsController.managedObjectContext)
                 mapView.addAnnotation(pin)
+                
+                stack.save()
             }
         }
     }
@@ -93,6 +94,8 @@ class TravelLocationsMapViewController: UIViewController, MKMapViewDelegate {
                     Logger.log.debug("Delete a pin.")
                     mapView.removeAnnotation(pin)
                     fetchedResultsController.managedObjectContext.deleteObject(pin)
+                    
+                    stack.save()
                 }
             }
         } else {
@@ -165,13 +168,11 @@ class TravelLocationsMapViewController: UIViewController, MKMapViewDelegate {
     
     func updateUI() {
         if isInEditMode {
-            print("edit")
             navigationItem.rightBarButtonItem = doneButton
             
             self.view.frame.origin.y -= noteView.frame.size.height
 
         } else {
-            print("done")
             navigationItem.rightBarButtonItem = editButton
             self.view.frame.origin.y += noteView.frame.size.height
         }

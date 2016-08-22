@@ -11,6 +11,8 @@ import UIKit
 class ImageCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var selectedImageView: UIImageView!
+    
 
     var photo: Photo? {
         didSet {
@@ -22,7 +24,7 @@ class ImageCollectionViewCell: UICollectionViewCell {
                     if let photoURL = photo.photoURL {
                         if let url = NSURL(string: photoURL) {
                             activityIndicator.startAnimating()
-                            downloadImage(url)
+                            getImageData(url)
                         }
                     }
                 }
@@ -31,30 +33,13 @@ class ImageCollectionViewCell: UICollectionViewCell {
     }
     
     var pin: Pin?
-
-    /*
-    func clearPhoto() {
-        imageView.image = nil
-        
-        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        if let photo = photo {
-            delegate.stack.context.deleteObject(photo)
-        }
-        photo = nil
-    }
- */
     
-    private func getDataFromUrl(url: NSURL, completion: ((data: NSData?, response: NSURLResponse?, error: NSError? ) -> Void)) {
-        NSURLSession.sharedSession().dataTaskWithURL(url) {
-            (data, response, error) in
-            completion(data: data, response: response, error: error)
-            }.resume()
-    }
-    
-    private func downloadImage(url: NSURL){
-        getDataFromUrl(url) { (data, response, error)  in
-            guard let data = data where error == nil else { return }
+    private func getImageData(url: NSURL){
+        HTTPHelper.downloadImageFromUrl(url) { (data, response, error)  in
+            guard let data = data where error == nil else {
+                self.activityIndicator.stopAnimating()
+                return
+            }
             
             FunctionsHelper.performUIUpdatesOnMain({ 
                 Logger.log.debug(response?.suggestedFilename ?? url.lastPathComponent ?? "")

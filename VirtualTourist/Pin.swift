@@ -16,13 +16,13 @@ class Pin: NSManagedObject, MKAnnotation {
     }
     
     convenience init(annotationLatitude: Double, annotationLongitude: Double, context: NSManagedObjectContext) {
-        
         //initializing with entity "Pin"
         if let entity = NSEntityDescription.entityForName("Pin", inManagedObjectContext: context) {
             self.init(entity: entity, insertIntoManagedObjectContext: context)
             
             latitude = NSNumber(double: annotationLatitude)
             longitude = NSNumber(double: annotationLongitude)
+            
         } else {
             fatalError("Unable to find Entity name!")
         }
