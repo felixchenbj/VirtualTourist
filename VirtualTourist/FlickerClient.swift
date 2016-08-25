@@ -24,8 +24,13 @@ class FlickerClient {
         searchPhotos(latitude, longitude: longitude, page: page, completionHandler: { (info, pageCount, results, success) in
             if success {
                 Logger.log.debug("Page count: \(pageCount)")
-                if pageCount > 0 {
-                    let randomPhotoIndex = Int(arc4random_uniform(UInt32(pageCount)))
+                
+                // Fliker Api would only return at most the first 4,000 results
+                let maxPageNum = 4000/Constants.Flicker.PhotoPerPage
+                let fixedPageCount = pageCount > maxPageNum ? maxPageNum : pageCount
+                
+                if fixedPageCount > 0 {
+                    let randomPhotoIndex = Int(arc4random_uniform(UInt32(fixedPageCount)))
                     Logger.log.debug("Random page index: \(randomPhotoIndex)")
                     
                     self.searchPhotos(latitude, longitude: longitude, page: randomPhotoIndex, completionHandler: { (info, pageCount, results, success) in

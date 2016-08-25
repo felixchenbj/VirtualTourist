@@ -13,17 +13,23 @@ class ImageCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var selectedImageView: UIImageView!
     
-
+    var stack: CoreDataStack?
+    
     var photo: Photo? {
         didSet {
             if let photo = photo {
                 if let photoData = photo.photoFileData {
-                    imageView.image = UIImage(data: photoData)
-                    activityIndicator.stopAnimating()
+                    FunctionsHelper.performUIUpdatesOnMain({
+                        self.imageView.image = UIImage(data: photoData)
+                        self.activityIndicator.stopAnimating()
+                    })
                 } else {
                     if let photoURL = photo.photoURL {
                         if let url = NSURL(string: photoURL) {
-                            activityIndicator.startAnimating()
+                            FunctionsHelper.performUIUpdatesOnMain({
+                                self.imageView.image = nil
+                                self.activityIndicator.startAnimating()
+                            })
                             getImageData(url)
                         }
                     }
@@ -36,12 +42,12 @@ class ImageCollectionViewCell: UICollectionViewCell {
     
     private func getImageData(url: NSURL){
         HTTPHelper.downloadImageFromUrl(url) { (data, response, error)  in
-            guard let data = data where error == nil else {
-                self.activityIndicator.stopAnimating()
-                return
-            }
-            
-            FunctionsHelper.performUIUpdatesOnMain({ 
+            FunctionsHelper.performUIUpdatesOnMain({
+                guard let data = data where error == nil else {
+                    self.activityIndicator.stopAnimating()
+                    return
+                }
+                
                 Logger.log.debug(response?.suggestedFilename ?? url.lastPathComponent ?? "")
                 Logger.log.debug("Download finished.")
                 self.imageView.image = UIImage(data: data)
@@ -50,6 +56,10 @@ class ImageCollectionViewCell: UICollectionViewCell {
                     photo.photoFileData = data
                 }
                 self.activityIndicator.stopAnimating()
+                
+                if let stack = self.stack {
+                    stack.save()
+                }
             })
         }
     }

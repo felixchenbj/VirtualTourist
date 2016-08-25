@@ -41,7 +41,7 @@ class PhotoAlbumViewController: UIViewController {
         } else {
             fetchRandomPhotos()
         }
-        
+        updateNewCollectionButton()
     }
 
     override func viewDidLoad() {
@@ -94,8 +94,8 @@ class PhotoAlbumViewController: UIViewController {
                 
                 for object in fetchedObjects {
                     if let photo = object as? Photo {
-                        Logger.log.debug("")
                         if  photo.photoFileData != nil{
+                            Logger.log.debug("There is a photo has data in core data.")
                             return false
                         }
                     }

@@ -34,7 +34,6 @@ extension PhotoAlbumViewController: UICollectionViewDataSource, UICollectionView
         cell.selectedImageView.hidden = true
         
         cell.photo = photo
-        //cell.photoPath = path
         
         
         return cell
@@ -64,6 +63,7 @@ extension PhotoAlbumViewController: UICollectionViewDataSource, UICollectionView
     func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! ImageCollectionViewCell
         
+        cell.stack = self.stack
         cell.selectedImageView.hidden = true
         updateNewCollectionButton()
     }
